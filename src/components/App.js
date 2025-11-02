@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const API_KEY = "e260aded38c48a318c5d58d8e50f90a5";
 
@@ -33,7 +33,7 @@ function App() {
         placeholder="Enter a city"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        onKeyPress={search}
+        onKeyDown={search}
       />
       {weather && (
         <div className="weather">
