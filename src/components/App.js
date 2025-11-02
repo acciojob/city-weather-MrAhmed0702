@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
 
 const API_KEY = "e260aded38c48a318c5d58d8e50f90a5";
 
@@ -7,13 +7,19 @@ function App() {
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState(null);
 
-  const search = async (e) => {
+  const search = (e) => {
     if (e.key === "Enter") {
-      const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}`
-      );
-      setWeather(response.data);
-      setQuery("");
+      axios
+        .get(
+          `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}`
+        )
+        .then((response) => {
+          setWeather(response.data);
+          setQuery("");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     }
   };
 
